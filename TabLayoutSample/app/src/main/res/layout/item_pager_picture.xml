@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/picture"
+        android:layout_margin="8dp"
         app:srcCompat="@android:drawable/ic_menu_gallery"
         tools:layout_editor_absoluteX="37dp"
         tools:layout_editor_absoluteY="220dp" />

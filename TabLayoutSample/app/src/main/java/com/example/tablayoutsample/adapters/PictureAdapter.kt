@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.tablayoutsample.databinding.PagerItemPictureBinding
+import com.example.tablayoutsample.databinding.ItemPagerPictureBinding
 
 /**
  * ページャーに画像を出力する
@@ -15,7 +15,7 @@ class PictureAdapter(private val pictures: List<Uri>) : RecyclerView.Adapter<Pic
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PictureHolder {
 
         return PictureHolder(
-            PagerItemPictureBinding.inflate(
+            ItemPagerPictureBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -30,7 +30,7 @@ class PictureAdapter(private val pictures: List<Uri>) : RecyclerView.Adapter<Pic
     }
 }
 
-class PictureHolder(private val binding: PagerItemPictureBinding) :
+class PictureHolder(private val binding: ItemPagerPictureBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(media: Uri) {

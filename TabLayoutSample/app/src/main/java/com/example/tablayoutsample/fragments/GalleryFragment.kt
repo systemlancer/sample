@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.tablayoutsample.adapters.PictureAdapter
 import com.example.tablayoutsample.databinding.FragmentGalleryBinding
-import com.example.tablayoutsample.databinding.TabItemPictureBinding
+import com.example.tablayoutsample.databinding.ItemTabPictureBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 /**
@@ -40,7 +40,7 @@ class GalleryFragment : Fragment() {
                         タブの初期化
                      */
                     TabLayoutMediator(tabs, viewPager) { tab, position ->
-                        TabItemPictureBinding.inflate(inflater, container, false)
+                        ItemTabPictureBinding.inflate(inflater, container, false)
                             .apply {
                                 tabPicture.apply {
                                     tab.view.addView(this)
