@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">タブレイアウト サンプル</string>
+    <string name="picture">Picture</string>
+    <string name="tab_picture">タブに表示する画像</string>
+</resources>
