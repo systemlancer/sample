@@ -2,12 +2,9 @@ package com.example.tablayoutsample.adapters
 
 import android.net.Uri
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.tablayoutsample.R
 import com.example.tablayoutsample.databinding.PagerItemPictureBinding
 
 /**
@@ -16,9 +13,14 @@ import com.example.tablayoutsample.databinding.PagerItemPictureBinding
 class PictureAdapter(private val pictures: List<Uri>) : RecyclerView.Adapter<PictureHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PictureHolder {
-        val binging =
-            PagerItemPictureBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PictureHolder(binging.root)
+
+        return PictureHolder(
+            PagerItemPictureBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int = pictures.size
@@ -28,10 +30,11 @@ class PictureAdapter(private val pictures: List<Uri>) : RecyclerView.Adapter<Pic
     }
 }
 
-class PictureHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class PictureHolder(private val binding: PagerItemPictureBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
-    internal fun bind(media: Uri) {
-        itemView.findViewById<ImageView>(R.id.pager_picture)
+    fun bind(media: Uri) {
+        binding.pagerPicture
             .apply {
                 Glide.with(this).load(media).into(this)
             }

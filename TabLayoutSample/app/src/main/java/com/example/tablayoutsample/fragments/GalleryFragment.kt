@@ -6,6 +6,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.tablayoutsample.adapters.PictureAdapter
@@ -25,40 +26,44 @@ class GalleryFragment : Fragment() {
     ): View? {
         val binding = FragmentGalleryBinding.inflate(inflater, container, false)
             .apply {
-                // ストレージからJPEG画像のリストを取得
+                // MediaストアからJPEG画像のリストを取得
                 val pictures = getPictures()
 
-                /*
-                    ページャーの設定
-                 */
-                val adapter = PictureAdapter(pictures)
-                viewPager.adapter = adapter
+                if (pictures.isNotEmpty()) {
+                    /*
+                        ページャーの初期化
+                     */
+                    val adapter = PictureAdapter(pictures)
+                    viewPager.adapter = adapter
 
-                /*
-                    タブの設定.
-                 */
-                TabLayoutMediator(tabs, viewPager) { tab, position ->
-                    TabItemPictureBinding.inflate(inflater, container, false)
-                        .apply {
-                            tabPicture.apply {
-                                tab.view.addView(this)
-                                // タブにサムネイルを設定する.
-                                Glide.with(this)
-                                    .load(pictures[position])
-                                    .thumbnail(THUMBNAIL_SIZE_MULTIPLIER)
-                                    .into(this)
+                    /*
+                        タブの初期化
+                     */
+                    TabLayoutMediator(tabs, viewPager) { tab, position ->
+                        TabItemPictureBinding.inflate(inflater, container, false)
+                            .apply {
+                                tabPicture.apply {
+                                    tab.view.addView(this)
+                                    // タブにサムネイルを設定する.
+                                    Glide.with(this)
+                                        .load(pictures[position])
+                                        .thumbnail(THUMBNAIL_SIZE_MULTIPLIER)
+                                        .into(this)
+                                }
                             }
-                        }
-                }.attach()
+                    }.attach()
+                } else {
+                    Toast.makeText(requireContext(), "JPEG画像が存在しません.", Toast.LENGTH_SHORT).show()
+                }
+
+
             }
-
-
 
         return binding.root
     }
 
     /**
-     * ストレージからjpeg画像のリストを取得する.
+     * Mediaストア からjpeg画像のリストを取得する.
      */
     private fun getPictures(): List<Uri> {
         val projection = arrayOf(MediaStore.MediaColumns._ID)
