@@ -31,7 +31,7 @@ class PictureAdapter(private val pictures: List<Uri>) : RecyclerView.Adapter<Pic
 class PictureHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     internal fun bind(media: Uri) {
-        itemView.findViewById<ImageView>(R.id.picture_image)
+        itemView.findViewById<ImageView>(R.id.pager_picture)
             .apply {
                 Glide.with(this).load(media).into(this)
             }

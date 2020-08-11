@@ -25,6 +25,7 @@ class GalleryFragment : Fragment() {
     ): View? {
         val binding = FragmentGalleryBinding.inflate(inflater, container, false)
             .apply {
+                // ストレージからJPEG画像のリストを取得
                 val pictures = getPictures()
 
                 /*
